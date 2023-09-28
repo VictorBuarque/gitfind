@@ -1,0 +1,72 @@
+.conteudo {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.background{
+    margin: 2%;
+}
+.background::before{
+    height: 100vh;
+    position: absolute;
+    padding: 1rem;
+    left: 0;
+    background-color: #1D2128;
+}
+.info{
+    width: 60vw;
+    margin: 20px 20px;
+}
+.info hr{
+    width: 53vw;
+}
+button,input{
+    color: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 22px;
+    min-width: 250px;
+    margin-right: 12px;
+    width: 25vw;
+    background: transparent;
+    padding: 10px;
+    font-size: 18px;
+}
+input:hover{
+    border-color: #FFFFFF;
+}
+
+button:hover{
+    background-color: #999999;
+    border-color: #FFFFFF;
+}
+.perfil{
+    display: flex;
+    margin: 20px 0;
+    
+}
+.profile{
+    border-radius: 50%;
+    width: 7vw;
+    border: 3px solid #666666;
+    margin-right: 20px;
+}
+.perfil h3{
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 0;
+
+}
+.perfil span{
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    color: #FFFFFF;
+    
+}
+.perfil p{
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 20px 0 0 0;
+}
