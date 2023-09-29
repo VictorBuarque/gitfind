@@ -32,6 +32,7 @@ button,input{
     background: transparent;
     padding: 10px;
     font-size: 18px;
+    text-align: center;
 }
 input:hover{
     border-color: #FFFFFF;
@@ -70,4 +71,75 @@ button:hover{
     color: #dddddde0;
     font-size: 16px;
     margin: 10px 0 0 0;
+}
+
+
+/* Estilos para telas menores (320px a 425px) */
+@media screen and (min-width: 320px) {
+    .conteudo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .background {
+        position: relative;
+        margin: 10px 0;
+        width: 200px;
+    }
+
+    .background::before {
+        height: auto;
+        padding: 1rem;
+    }
+
+    .info {
+        width: 90%;
+        margin: 20px 0;
+    }
+
+    .info hr {
+        width: 90%;
+    }
+
+    input {
+        width: 270px;
+        min-width: auto;
+        margin: 10px 0 0 0;
+        text-align: center;
+    }
+    button {
+        width: 292px;
+        min-width: auto;
+        margin: 10px 0 0 0;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .perfil {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .profile {
+        margin: 10px 0;
+        width: 200px;
+    }
+}
+@media screen and (min-width: 375px) {
+    input {
+        width: 270px;
+        min-width: auto;
+        margin: 10px 25px  0;
+        text-align: center;
+    }
+    button {
+        width: 292px;
+        min-width: auto;
+        margin: 10px 25px 0;
+        text-align: center;
+    }
 }

@@ -3,6 +3,7 @@ import { Header } from '../../components/Header';
 import background from '../../assets/imgs/GitHub.png';
 import { ItemList } from '../../components/ItemList';
 import './styles.css';
+import { Footer } from '../../components/Footer';
 function App() {
     //Use State do input
     const [user, setUser] = useState('');
@@ -77,7 +78,7 @@ function App() {
             </div>
             <div>
                 <hr/>
-                <Header />
+                <Footer />
             </div>
         </div>
     );
