@@ -7,12 +7,12 @@
 
 .background{
     margin: 2%;
+    position: fixed;
+    left: 0;
 }
 .background::before{
     height: 100vh;
-    position: absolute;
     padding: 1rem;
-    left: 0;
     background-color: #1D2128;
 }
 .info{
@@ -60,13 +60,14 @@ button:hover{
 }
 .perfil span{
     display: inline-block;
-    font-size: 12px;
+    font-size: 16px;
     margin: 0;
-    color: #FFFFFF;
+    color: #dddddde0;
+    margin: 10px 0 0 0;
     
 }
 .perfil p{
-    color: #FFFFFF;
-    font-size: 12px;
-    margin: 20px 0 0 0;
+    color: #dddddde0;
+    font-size: 16px;
+    margin: 10px 0 0 0;
 }

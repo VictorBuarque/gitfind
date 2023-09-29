@@ -1,8 +1,36 @@
+import { useState } from 'react';
 import { Header } from '../../components/Header';
 import background from '../../assets/imgs/GitHub.png';
 import { ItemList } from '../../components/ItemList';
 import './styles.css';
 function App() {
+    //Use State do input
+    const [user, setUser] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
+    const [currentRepos, setCurrentRepos] = useState(null);
+
+    const handleGetData = async () => {
+        //Coletando dados do usuário via api
+        const userData = await fetch(`https://api.github.com/users/${user}`)
+        const newUser = await userData.json()
+
+        //Se der certo
+        if (newUser.name){
+            //Coletando foto, nome e bio da api e setando
+            const {avatar_url, name, bio, login} = newUser;
+            setCurrentUser({avatar_url, name, bio, login});
+
+            //Coletando as publicações do repositório
+            const reposData = await fetch (`https://api.github.com/users/${user}/repos`);
+            const newRepos = await reposData.json();
+            //Se der certo
+            if(newRepos.length){
+                setCurrentRepos(newRepos);
+            }
+
+        }
+    }
+
     return (
         <div className="App">
             <Header />
@@ -11,28 +39,40 @@ function App() {
                 <img src={background} className="background" alt="background "></img>
                 <section className="info">
                     <div>
-                        <input name="usuario" value="@username" />
-                        <button type="submit">Buscar</button>
+                        <input 
+                        name="usuario" 
+                        value={user} 
+                        onChange={event=>setUser(event.target.value)} 
+                        placeholder='@username'/>
+                        <button onClick={handleGetData}>Buscar</button>
                     </div>
-                    <div className="perfil">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/114040791?s=400&u=469e400f38ea7024ac51746802037465d95f4244&v=4"
-                            alt="imagem perfil"
-                            className="profile"
-                        />
-                        <div>
-                            <h3>Victor Buarque</h3>
-                            <span>@victorbuarque</span>
-                            <p>Front-end developer | HTML | CSS | Javascript |</p>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div>
-                        <h4> Repositório </h4>
-                        <ItemList title="teste" description="teste descricaçao"/>
-                        <ItemList title="teste" description="teste descricaçao"/>
-                        <ItemList title="teste" description="teste descricaçao"/>
-                    </div>
+                    {currentUser?.name ? (
+                        <>
+                            <div className="perfil">
+                                <img
+                                    src={currentUser.avatar_url}
+                                    alt="imagem perfil"
+                                    className="profile"
+                                />
+                                <div>
+                                    <h3>{currentUser.name}</h3>
+                                    <span>@{currentUser.login}</span>
+                                    <p>{currentUser.bio}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                        </>
+                    ) : null }
+                    {currentRepos?.length ? (
+                        <>
+                            <div>
+                                <h4> Repositório </h4>
+                                {currentRepos.map((repo) => 
+                                <ItemList title={repo.name} description={repo.description} />
+                                )}
+                            </div>
+                        </>
+                    ):null}
                 </section>
             </div>
             <div>
