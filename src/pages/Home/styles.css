@@ -8,15 +8,26 @@
 .background {
     margin: 2%;
     left: 0;
-    width: 30%;
-    position: fixed;
+    max-width: 40%;
+    position: relative;
 }
 .background::before {
     height: 100vh;
     padding: 1rem;
-
+    position: relative;
     background-color: #1d2128;
 }
+.background::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1d2128;
+    z-index: -1;
+}
+
 .info {
     width: 65vw;
     margin: 20px 10px;
@@ -29,9 +40,10 @@ input {
     color: #ffffff;
     border: 1px solid #999999;
     border-radius: 22px;
-    min-width: 250px;
-    margin-right: 12px;
-    width: 25vw;
+    min-width: 200px;
+
+    margin: 10px auto;
+
     background: transparent;
     padding: 10px;
     font-size: 18px;
@@ -73,29 +85,42 @@ button:hover {
     margin: 10px 0 0 0;
 }
 
-/* Estilos para telas menores (320px a 425px) */
-@media screen and (min-width: 320px) and (max-width: 425px) {
+/* Estilos exclusivos para telas de 320px */
+@media screen and (min-width: 320px) and (max-width: 320px) {
     .conteudo {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin: 2rem auto;
     }
 
     .background {
-        position: relative;
-        margin: 10px 0;
-        width: 200px;
+        max-width: 50vw;
+        margin: auto;
+        padding-bottom: 1rem;
     }
 
     .background::before {
-        height: auto;
-        padding: 1rem;
+        max-width: 50vw;
+        position: relative;
+    }
+
+    .background::after {
+        max-width: 50vw;
+        position: relative;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
     }
 
     .info {
-        width: 90%;
-        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
         text-align: center;
     }
 
@@ -103,11 +128,22 @@ button:hover {
         width: 100%;
     }
 
-    input,
-    button {
-        max-width: 292px;
-        margin: 10px 0 0 0;
+    
+    input {
+        min-width: 200px;
+        margin-right: 50px;
         text-align: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        min-width: 220px;
+        margin: 10px;
+        text-align: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
     }
 
     .perfil {
@@ -121,21 +157,31 @@ button:hover {
         width: 200px;
     }
 }
-/* Estilos para telas maiores (768px) */
-@media screen and (max-width: 768px) {
+
+
+/* Estilos para telas menores (320px a 425px) */
+@media screen and (min-width: 375px) and (max-width: 425px) {
     .conteudo {
-        align-items: flex-start;
-        justify-content: flex-end;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto;
     }
 
     .background {
-        min-width: 40vw;
-        min-height: 70vh;
-        position: fixed;
+        max-width: 50vw;
+        margin: auto;
+        padding-bottom: 1rem;
+    }
+
+    .background::before {
+        max-width: 50vw;
+        position: relative;
     }
 
     .background::after {
-        min-width: 20vw;
+        max-width: 50vw;
         position: relative;
         content: '';
         top: 0;
@@ -146,11 +192,79 @@ button:hover {
     }
 
     .info {
-        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        text-align: center;
     }
 
     .info hr {
-        width: 50vw;
+        width: 100%;
+    }
+
+    /* Para o input */
+    input {
+        min-width: 200px;
+        margin: auto;
+        text-align: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Para o botão */
+    button {
+        min-width: 220px;
+        margin: 10px;
+        text-align: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .perfil {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+    }
+
+    .profile {
+        margin: 10px 0;
+        width: 200px;
+    }
+}
+
+/* Estilos para telas maiores (768px) */
+@media screen and (min-width: 768px) {
+    .conteudo {
+        align-items: flex-start;
+        justify-content: flex-end;
+        min-height: 80vh;
+    }
+
+    .background::before {
+        min-width: 40vw;
+        position: relative;
+    }
+
+    .background::after {
+        min-width: 40vw;
+        position: relative;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .info {
+        width: 65vw;
+        margin: 20px auto; /* Centraliza horizontalmente */
+    }
+
+    .info hr {
+        width: 100%;
     }
 
     input,
