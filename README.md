@@ -1,4 +1,4 @@
-# gitfind
+# GitFind
 
-This is a gitfind project i have used HTML, CSS, Javascript and ReactJs to build.
-Incomplete Yet!
+O GitFind é uma ferramenta simples para localizar e explorar repositórios Git em todo o mundo. Ele facilita a busca por projetos interessantes hospedados no GitHub e em outros lugares.
+Este projeto foi realizado utilizando HTML, CSS, JS e ReactJS
