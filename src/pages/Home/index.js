@@ -67,7 +67,8 @@ function App() {
                     {currentRepos?.length ? (
                         <>
                             <div>
-                                <h4> Repositório </h4>
+                                <h4> Repositórios </h4>
+                                <hr></hr>
                                 {currentRepos.map((repo) => 
                                 <ItemList title={repo.name} description={repo.description} />
                                 )}

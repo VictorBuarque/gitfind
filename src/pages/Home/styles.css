@@ -5,25 +5,28 @@
     justify-content: flex-end;
 }
 
-.background{
+.background {
     margin: 2%;
-    position: fixed;
     left: 0;
+    width: 30%;
+    position: fixed;
 }
-.background::before{
+.background::before {
     height: 100vh;
     padding: 1rem;
-    background-color: #1D2128;
+
+    background-color: #1d2128;
 }
-.info{
-    width: 60vw;
-    margin: 20px 20px;
+.info {
+    width: 65vw;
+    margin: 20px 10px;
 }
-.info hr{
-    width: 53vw;
+.info hr {
+    width: 65vw;
 }
-button,input{
-    color: #FFFFFF;
+button,
+input {
+    color: #ffffff;
     border: 1px solid #999999;
     border-radius: 22px;
     min-width: 250px;
@@ -34,48 +37,44 @@ button,input{
     font-size: 18px;
     text-align: center;
 }
-input:hover{
-    border-color: #FFFFFF;
+input:hover {
+    border-color: #c48e00;
 }
 
-button:hover{
-    background-color: #999999;
-    border-color: #FFFFFF;
+button:hover {
+    background-color: #c48e00;
+    border-color: #c48e00;
 }
-.perfil{
+.perfil {
     display: flex;
     margin: 20px 0;
-    
 }
-.profile{
+.profile {
     border-radius: 50%;
     width: 7vw;
     border: 3px solid #666666;
     margin-right: 20px;
 }
-.perfil h3{
-    color: #FFFFFF;
+.perfil h3 {
+    color: #c48e00;
     font-size: 24px;
     margin: 0;
-
 }
-.perfil span{
+.perfil span {
     display: inline-block;
     font-size: 16px;
     margin: 0;
     color: #dddddde0;
     margin: 10px 0 0 0;
-    
 }
-.perfil p{
+.perfil p {
     color: #dddddde0;
     font-size: 16px;
     margin: 10px 0 0 0;
 }
 
-
 /* Estilos para telas menores (320px a 425px) */
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 320px) and (max-width: 425px) {
     .conteudo {
         display: flex;
         flex-direction: column;
@@ -97,24 +96,17 @@ button:hover{
     .info {
         width: 90%;
         margin: 20px 0;
+        text-align: center;
     }
 
     .info hr {
-        width: 90%;
+        width: 100%;
     }
 
-    input {
-        width: 270px;
-        min-width: auto;
-        margin: 10px 0 0 0;
-        text-align: center;
-    }
+    input,
     button {
-        width: 292px;
-        min-width: auto;
+        max-width: 292px;
         margin: 10px 0 0 0;
-        align-items: center;
-        justify-content: center;
         text-align: center;
     }
 
@@ -129,17 +121,55 @@ button:hover{
         width: 200px;
     }
 }
-@media screen and (min-width: 375px) {
-    input {
-        width: 270px;
-        min-width: auto;
-        margin: 10px 25px  0;
-        text-align: center;
+/* Estilos para telas maiores (768px) */
+@media screen and (max-width: 768px) {
+    .conteudo {
+        align-items: flex-start;
+        justify-content: flex-end;
     }
+
+    .background {
+        min-width: 40vw;
+        min-height: 70vh;
+        position: fixed;
+    }
+
+    .background::after {
+        min-width: 20vw;
+        position: relative;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .info {
+        width: 50vw;
+    }
+
+    .info hr {
+        width: 50vw;
+    }
+
+    input,
     button {
-        width: 292px;
-        min-width: auto;
-        margin: 10px 25px 0;
-        text-align: center;
+        max-width: 200px;
+        width: 20vw;
+        margin: 10px;
+        justify-content: center;
+        align-self: center;
+        align-items: center;
+    }
+
+    .perfil {
+        margin: 10px 0;
+        width: 50vw;
+    }
+
+    .profile {
+        width: 20vw;
+        margin-right: 10px;
     }
 }
