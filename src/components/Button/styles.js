@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #999999;
     border-radius: 20px;
     width: 80%;
@@ -15,4 +18,9 @@ export const ButtonContainer = styled.button`
         color: #fff;
         cursor: pointer;
     }
+    @media (max-width: 768px) {
+        width: 80%; 
+        height: 50px;
+        margin: 10px;
+        font-size: 18px;
 `;

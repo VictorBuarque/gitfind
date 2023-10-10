@@ -13,5 +13,6 @@ export const Container = styled.div`
     widht: 25vw;
     height: 25vh;
     margin-bottom: 20px;
+    display:flex;
 }
 `;

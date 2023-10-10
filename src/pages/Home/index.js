@@ -6,45 +6,40 @@ import Input from '../../components/Input/';
 import Button from '../../components/Button/';
 import ItemRepo from '../../components/ItemRepo';
 import Footer from '../../components/Footer';
+import { api } from '../../services/api';
 
 function App() {
-    const [user, setUser] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
-    const [currentRepos, setCurrentRepos] = useState([]);
-
-    const handleGetData = async () => {
-        const userDataResponse = await fetch(`https://api.github.com/users/${user}`);
-        const userData = await userDataResponse.json();
-
-        if (userDataResponse.ok) {
-            setCurrentUser(userData);
-
-            const reposDataResponse = await fetch(`https://api.github.com/users/${user}/repos`);
-            
-            if (reposDataResponse.ok) {
-                const reposData = await reposDataResponse.json();
-                setCurrentRepos(reposData);
+    const [repos, setRepos] = useState([]);
+    const [currentRepository, setCurrentRepository] = useState([]);
+    const handleSearchRepo = async () => {
+        const { data } = await api.get(`repos/${currentRepository}`);
+        try {
+            if (data.id) {
+                const isExist = repos.find((repo) => repo.id === data.id);
+                if (!isExist) {
+                    setRepos((prev) => [...prev, data]);
+                    setCurrentRepository('');
+                }
             } else {
-                setCurrentRepos([]);
-                alert('Repositórios não encontrados');
+                alert('Repositório não encontrado');
             }
-        } else {
-            setCurrentUser(null);
-            setCurrentRepos([]);
-            alert('Usuário não encontrado');
+        } catch (error) {
+            console.error('Erro ao buscar repositório:', error);
+            alert('Erro ao buscar repositório');
         }
-    }
-
+    };
     return (
         <>
             <Header />
             <Container>
                 <img src={background} className="background" alt="git logo" />
-                <Input value={user} onChange={(e) => setUser(e.target.value)} />
-                <Button onClick={handleGetData} />
-                <img src={currentUser?.avatar_url} className="background" alt="profile foto" />
-                {currentRepos.map((repo, index) => (
-                    <ItemRepo key={index} repo={repo} />
+                <Input
+                    value={currentRepository}
+                    onChange={(e) => setCurrentRepository(e.target.value)}
+                />
+                <Button onClick={handleSearchRepo} />
+                {repos.map((repo) => (
+                    <ItemRepo repo={repo} />
                 ))}
             </Container>
             <Footer />
