@@ -1,11 +1,14 @@
-import "./styles.css";
+import { FooterContainer } from './styles';
 
-const Footer = () => {
+function Footer() {
     return (
-        <footer>
-            <h3>Desenvolvido por Victor Buarque</h3>
-        </footer>
+        <FooterContainer>
+            <hr />
+            <footer>
+                <h3>Desenvolvido por Victor Buarque</h3>
+            </footer>
+        </FooterContainer>
     );
-};
+}
 
-export { Footer };
+export default Footer;

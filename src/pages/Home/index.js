@@ -1,87 +1,54 @@
 import { useState } from 'react';
-import { Header } from '../../components/Header';
+import { Container } from './styles';
 import background from '../../assets/imgs/GitHub.png';
-import { ItemList } from '../../components/ItemList';
-import './styles.css';
-import { Footer } from '../../components/Footer';
+import Header from '../../components/Header';
+import Input from '../../components/Input/';
+import Button from '../../components/Button/';
+import ItemRepo from '../../components/ItemRepo';
+import Footer from '../../components/Footer';
+
 function App() {
-    //Use State do input
     const [user, setUser] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
-    const [currentRepos, setCurrentRepos] = useState(null);
+    const [currentRepos, setCurrentRepos] = useState([]);
 
     const handleGetData = async () => {
-        //Coletando dados do usuário via api
-        const userData = await fetch(`https://api.github.com/users/${user}`)
-        const newUser = await userData.json()
+        const userDataResponse = await fetch(`https://api.github.com/users/${user}`);
+        const userData = await userDataResponse.json();
 
-        //Se der certo
-        if (newUser.name){
-            //Coletando foto, nome e bio da api e setando
-            const {avatar_url, name, bio, login} = newUser;
-            setCurrentUser({avatar_url, name, bio, login});
+        if (userDataResponse.ok) {
+            setCurrentUser(userData);
 
-            //Coletando as publicações do repositório
-            const reposData = await fetch (`https://api.github.com/users/${user}/repos`);
-            const newRepos = await reposData.json();
-            //Se der certo
-            if(newRepos.length){
-                setCurrentRepos(newRepos);
+            const reposDataResponse = await fetch(`https://api.github.com/users/${user}/repos`);
+            
+            if (reposDataResponse.ok) {
+                const reposData = await reposDataResponse.json();
+                setCurrentRepos(reposData);
+            } else {
+                setCurrentRepos([]);
+                alert('Repositórios não encontrados');
             }
-
+        } else {
+            setCurrentUser(null);
+            setCurrentRepos([]);
+            alert('Usuário não encontrado');
         }
     }
 
     return (
-        <div className="App">
+        <>
             <Header />
-            <hr></hr>
-            <div className="conteudo">
-                <img src={background} className="background" alt="background "></img>
-                <section className="info">
-                    <div>
-                        <input 
-                        name="usuario" 
-                        value={user} 
-                        onChange={event=>setUser(event.target.value)} 
-                        placeholder='@username'/>
-                        <button onClick={handleGetData}>Buscar</button>
-                    </div>
-                    {currentUser?.name ? (
-                        <>
-                            <div className="perfil">
-                                <img
-                                    src={currentUser.avatar_url}
-                                    alt="imagem perfil"
-                                    className="profile"
-                                />
-                                <div>
-                                    <h3>{currentUser.name}</h3>
-                                    <span>@{currentUser.login}</span>
-                                    <p>{currentUser.bio}</p>
-                                </div>
-                            </div>
-                            <hr/>
-                        </>
-                    ) : null }
-                    {currentRepos?.length ? (
-                        <>
-                            <div>
-                                <h4> Repositórios </h4>
-                                <hr></hr>
-                                {currentRepos.map((repo) => 
-                                <ItemList title={repo.name} description={repo.description} />
-                                )}
-                            </div>
-                        </>
-                    ):null}
-                </section>
-            </div>
-            <div>
-                <hr/>
-                <Footer />
-            </div>
-        </div>
+            <Container>
+                <img src={background} className="background" alt="git logo" />
+                <Input value={user} onChange={(e) => setUser(e.target.value)} />
+                <Button onClick={handleGetData} />
+                <img src={currentUser?.avatar_url} className="background" alt="profile foto" />
+                {currentRepos.map((repo, index) => (
+                    <ItemRepo key={index} repo={repo} />
+                ))}
+            </Container>
+            <Footer />
+        </>
     );
 }
 

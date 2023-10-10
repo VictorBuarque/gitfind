@@ -1,11 +1,12 @@
-import "./styles.css";
+import { HeaderContainer } from "./styles.js";
 
-const Header = () => {
+function Header ()  {
     return (
-        <header>
+        <HeaderContainer>
             <h1>GitFind</h1>
-        </header>
+            <hr/>
+        </HeaderContainer>
     );
 };
 
-export { Header };
+export default Header ;
