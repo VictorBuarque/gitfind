@@ -9,13 +9,13 @@ function ItemRepo({ repo }) {
 
     return (
         <ItemContainer>
-            <hr/>
+            <hr />
             <h3>{repo.name}</h3>
             <p>{repo.full_name}</p>
             <a href={repo.html_url} rel="noreferrer" target="_blank">
                 Ver Repositório
             </a>
-            <hr />
+            
         </ItemContainer>
     );
 }

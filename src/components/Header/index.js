@@ -1,9 +1,9 @@
-import { HeaderContainer } from "./styles.js";
+import { HeaderContainer, Title } from "./styles.js";
 
 function Header ()  {
     return (
         <HeaderContainer>
-            <h1>GitFind</h1>
+            <Title>GitFind</Title>
             <hr/>
         </HeaderContainer>
     );

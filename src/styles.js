@@ -12,11 +12,12 @@ export default createGlobalStyle`
         
     }
     hr {
+        height: 1px; 
         background-color: #666666;
-        border: 1px solid #666666;
-        border-radius: 1rem;
+        border: none;
         width: 100%;
     }
+    
     h4{
         font-size: 24px;
         text-align: center;

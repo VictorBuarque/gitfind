@@ -1,18 +1,18 @@
 import styled from 'styled-components';
+
 export const Container = styled.div`
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
     flex-direction: column;
     background-color: #1d2128;
-} 
-.background {
-    widht: 25vw;
-    height: 25vh;
-    margin-bottom: 20px;
-    display:flex;
-}
-`;
+    padding: 5rem auto;
+    margin: 10px auto;
+}`;
+
+export const Background = styled.img`
+    width: 200px;
+}`;

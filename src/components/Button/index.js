@@ -1,10 +1,10 @@
 import React from 'react';
-import { ButtonContainer } from './styles';
+import { ButtonContainer,Button1 } from './styles';
 
 function Button({onClick}) {
     return (
-        <ButtonContainer onClick={onClick}>
-            Buscar
+        <ButtonContainer >
+            <Button1 onClick={onClick}>Buscar</Button1>
         </ButtonContainer>
     );
 }
